@@ -3,9 +3,11 @@ const { GracefulShutdownServer } = require("medusa-core-utils")
 
 const loaders = require("@medusajs/medusa/dist/loaders/index").default
 
+let app;
+
 ;(async() => {
   async function start() {
-    const app = express()
+    app = express()
     const directory = process.cwd()
 
     try {
@@ -48,3 +50,5 @@ const loaders = require("@medusajs/medusa/dist/loaders/index").default
 
   await start()
 })()
+
+module.exports = app

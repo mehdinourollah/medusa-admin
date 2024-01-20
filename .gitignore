@@ -27,3 +27,4 @@ build
 !.yarn/versions
 
 storefront
+.vercel
