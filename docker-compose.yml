@@ -1,0 +1,71 @@
+# version: '3.3'
+
+# services:
+#   admin:
+#     container_name: medusa-admin
+#     build: .
+#     ports:
+#       - 9000:9000
+#       - 7001:7001
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     deploy:
+#       resources:
+#         limits:
+#           cpus: '0.5'  # CPU limit in terms of number of CPUs
+#           memory: 512M  # Memory limit
+#         reservations:
+#           cpus: '0.25'  # CPU reservation in terms of number of CPUs
+#     env_file:
+#       - .env
+version: "3.8"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+    image: backend:latest
+    container_name: medusa-server
+    restart: always
+    command: ["npm", "run", "start"]
+    # depends_on:
+    #   - postgres
+    #   - redis
+    # environment:
+    #   DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
+    #   REDIS_URL: redis://redis:6379
+    #   NODE_ENV: production
+    #   STORE_CORS: http://localhost
+    #   JWT_SECRET: something
+    #   COOKIE_SECRET: something
+    env_file:
+      - .env
+    volumes:
+      - medusa-data:/data
+    ports:
+      - 9000:9000
+      - 7001:7001
+
+  # postgres:
+  #   image: postgres:10.4
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - db-data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: medusa-docker
+
+  # redis:
+  #   image: redis
+  #   container_name: cache
+  #   volumes:
+  #     - cache-data:/data
+  #   expose:
+  #     - 6379
+
+volumes:
+  medusa-data:
+  # db-data:
+  # cache-data:
+      

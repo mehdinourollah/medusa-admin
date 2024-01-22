@@ -1,8 +1,7 @@
 # syntax=docker/dockerfile:1
 
-FROM node:18-alpine
+FROM node:alpine
 WORKDIR /app
 COPY . .
-RUN yarn install --production
-CMD ["node", "./api/index.js"]
-EXPOSE 9000
+RUN yarn install 
+CMD yarn dev:custom

@@ -8,7 +8,7 @@ export const GET = (
   res: MedusaResponse
 ) => {
   res.json({
-    message: "[GET] Hello world! jksdhsdhlk",
+    message: "[GET] Hello world!",
   })
 }
 

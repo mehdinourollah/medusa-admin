@@ -1,5 +1,9 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
 
-export async function GET() { 
-    return "test";
+export const GET = (
+  req,
+  res
+) => {
+  res.json({
+    message: "simple express route",
+  })
 }
